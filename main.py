@@ -43,28 +43,49 @@ def help(ufo):
     print("Thank you for using it!")
     print("Remember, the truth is out there!!")
 
-##### Main Functions ######
+def city(ufo):
+  city = str(input("Please enter a city to look at: "))
+  print("Here is the data on " + city.title())
+  print(ufo[ufo.City == city.title()])
+  option = input("Do you want to look at more data?(y/n) ")
+  if option == 'y':
+    start(ufo)
+  elif option == 'n':
+    print("Thank you for using the program!")
+    print("Remember the truth is out there!")
+
+def state(ufo):
+  state = str(input("Please enter the state abbreviation: "))
+  print("Here is the data on " + state.upper())
+  print(ufo[ufo.State == state.upper()])
+  option = input("Do you want to look at more data?(y/n) ")
+  if option == 'y':
+    start(ufo)
+  elif option == 'n':
+    print("Thank you for using the program!")
+    print("Remember the truth is out there!")
+
+  # option = input("Do you want to save this data stream to refine it more?(y/n) ")
+  # if option == 'y':
+  #   citySave = ufo[ufo.City == city]
+  # else: 
+  #   print("Data not saved moving on!")
+
+def other(ufo):
+  option = input("Do you want to look at UFO count by city?(y) ")
+  if option == "y":
+    print(ufo.City.value_counts())
 
 def start(ufo):
   print("\033c")
   print("Here there will be where you select what you want to look at")
-  choice = input("Do you want to look at UFO's by city, state or both?")
+  choice = input("Do you want to look at UFO's by 'city', 'state' or 'other': ")
   if choice == 'city':
-    city()
+    city(ufo)
   elif choice == "state":
-    state()
-  elif choice == "both":
-    combo()
-
-  city = str(input("Please enter a city to look at: "))
-  print("Here is the data on " + city.title())
-  print(ufo[ufo.City == city.title()])
-  option = input("Do you want to save this data stream to refine it more?(y/n) ")
-  if option == 'y':
-    citySave = ufo[ufo.City == city]
-  else: 
-    print("Data not saved moving on!")
-
+    state(ufo)
+  elif choice == "other":
+    other(ufo)
 
 def main():
   print("\033c")

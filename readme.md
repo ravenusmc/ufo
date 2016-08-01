@@ -1,0 +1,3 @@
+== README
+
+  Over the past few weeks I have been learning some basic stuff in Python. One of the video series that I follow, Data School, on Youtube had a UFO data file. Well, when I was little, I was really interested in UFO's. As I got older I guess you can say that I became somewhat of a nonbeliever. However, I put together this project where an individual is able to look up UFO's in their general area. 

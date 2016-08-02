@@ -1,22 +1,12 @@
 import pandas as pd 
 
-cols = ['City', 'Color', 'Shape', 'State', 'Time']
-ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
-#print(ufo.head())
+from valid import *
 
 
 # print(ufo[(ufo.State == "GA") & (ufo.City == "Atlanta")])
 
-####### UFO Program ##############
 
-#### Helper Functions #############
 
-#This function is for validation for user input. 
-def valid(choice):
-  if choice == 'y' or choice == 'n':
-    return True 
-  else:
-    return False
 
 
 #### Main Program Functions #######
@@ -44,6 +34,7 @@ def help(ufo):
     print("Remember, the truth is out there!!")
 
 def city(ufo):
+  print("\033c")
   city = str(input("Please enter a city to look at: "))
   print("Here is the data on " + city.title())
   print(ufo[ufo.City == city.title()])
@@ -55,6 +46,7 @@ def city(ufo):
     print("Remember the truth is out there!")
 
 def state(ufo):
+  print("\033c")
   state = str(input("Please enter the state abbreviation: "))
   print("Here is the data on " + state.upper())
   print(ufo[ufo.State == state.upper()])
@@ -65,6 +57,14 @@ def state(ufo):
     print("Thank you for using the program!")
     print("Remember the truth is out there!")
 
+def shape(ufo):
+  print("\033c")
+  print("Here are common shapes to examine: ")
+  print("disk, cigar, sphere, light, other, circle")
+  shape = str(input("Please enter the shape you want to examine: "))
+  print("Here is the data on ufo's shaped as a: " + shape.upper())
+  print(ufo[ufo.Shape == shape.upper()])
+
   # option = input("Do you want to save this data stream to refine it more?(y/n) ")
   # if option == 'y':
   #   citySave = ufo[ufo.City == city]
@@ -72,18 +72,24 @@ def state(ufo):
   #   print("Data not saved moving on!")
 
 def other(ufo):
-  option = input("Do you want to look at UFO count by city?(y) ")
-  if option == "y":
+  print("\033c")
+  print("Do you want to look at UFO count by city? ")
+  option = input("Please type 'count' or 'back' ")
+  if option == "count":
     print(ufo.City.value_counts())
+  elif option == 'back':
+    start(ufo)
 
 def start(ufo):
   print("\033c")
   print("Here there will be where you select what you want to look at")
-  choice = input("Do you want to look at UFO's by 'city', 'state' or 'other': ")
+  choice = input("Do you want to look at UFO's by 'city', 'state', 'shape' or 'other': ")
   if choice == 'city':
     city(ufo)
   elif choice == "state":
     state(ufo)
+  elif choice == 'shape':
+    shape(ufo)
   elif choice == "other":
     other(ufo)
 
@@ -104,6 +110,8 @@ def intro():
   print("Welcome to UFO Data!")
   print("--------------------")
   choice = input("Do you want to use it?(y/n) ")
+  while not valid(choice):
+    choice = input("Do you want to use it?(y/n) ")
   if choice == 'y':
     main()
   elif choice == 'n':

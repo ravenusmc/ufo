@@ -4,3 +4,16 @@ def valid(choice):
     return True 
   else:
     return False
+
+def validMain(choice):
+  if choice == 'help' or choice == 'next':
+    return True
+  else: 
+    return False
+
+def validStart(choice):
+  if choice == 'city' or choice == 'state' or choice == 'shape' or choice == 'other':
+    return True
+  else:
+    return False
+

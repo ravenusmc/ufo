@@ -1,11 +1,17 @@
 import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt 
 
 from valid import *
 
 
 # print(ufo[(ufo.State == "GA") & (ufo.City == "Atlanta")])
 
-
+  # option = input("Do you want to save this data stream to refine it more?(y/n) ")
+  # if option == 'y':
+  #   citySave = ufo[ufo.City == city]
+  # else: 
+  #   print("Data not saved moving on!")
 
 
 
@@ -64,19 +70,23 @@ def shape(ufo):
   shape = str(input("Please enter the shape you want to examine: "))
   print("Here is the data on ufo's shaped as a: " + shape.upper())
   print(ufo[ufo.Shape == shape.upper()])
-
-  # option = input("Do you want to save this data stream to refine it more?(y/n) ")
-  # if option == 'y':
-  #   citySave = ufo[ufo.City == city]
-  # else: 
-  #   print("Data not saved moving on!")
+  graph = input("Would you like to see a bar graph of this data? ")
+  if graph == "y":
+    ufo.Shape.value_counts().plot(kind="bar")
+    plt.show()
+  else:
+    start(ufo)
 
 def other(ufo):
   print("\033c")
   print("Do you want to look at UFO count by city? ")
-  option = input("Please type 'count' or 'back' ")
-  if option == "count":
+  print("Looking at count, you will see which cities have the most UFO sightings!")
+  print("You can also look at which shapes are the most common.")
+  option = input("Please type 'city', 'shape' or 'back': ")
+  if option == "city":
     print(ufo.City.value_counts())
+  elif option == "shape":
+    print(ufo.groupby('Shape').Shape.count())
   elif option == 'back':
     start(ufo)
 
@@ -84,6 +94,8 @@ def start(ufo):
   print("\033c")
   print("Here there will be where you select what you want to look at")
   choice = input("Do you want to look at UFO's by 'city', 'state', 'shape' or 'other': ")
+  while not validStart(choice):
+    choice = input("Do you want to look at UFO's by 'city', 'state', 'shape' or 'other': ")
   if choice == 'city':
     city(ufo)
   elif choice == "state":
@@ -93,12 +105,15 @@ def start(ufo):
   elif choice == "other":
     other(ufo)
 
+#This function is where all of the data will be pulled in from.
 def main():
   print("\033c")
   cols = ['City', 'Color', 'Shape', 'State', 'Time']
   ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
   print("Thank you for using the program!")
-  choice = input('If you need to see directions on how to use this type help or next to move on. ' )
+  choice = input("If you need to see directions on how to use this type 'help' or 'next' to move on. " )
+  while not validMain(choice):
+    choice = input("If you need to see directions on how to use this type 'help' or 'next' to move on. " )
   if choice == 'help':
     help(ufo)
   elif choice == 'next':

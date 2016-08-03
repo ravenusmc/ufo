@@ -3,8 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 from valid import *
-
-
 # print(ufo[(ufo.State == "GA") & (ufo.City == "Atlanta")])
 
   # option = input("Do you want to save this data stream to refine it more?(y/n) ")
@@ -12,8 +10,6 @@ from valid import *
   #   citySave = ufo[ufo.City == city]
   # else: 
   #   print("Data not saved moving on!")
-
-
 
 #### Main Program Functions #######
 
@@ -106,7 +102,35 @@ def yearGraph(ufo):
     year.append(int(count))
     print("The number of UFO's in " + value + " was: " + str(year))
   elif option == 2:
-    
+    print('\n')
+    print("Please be aware that the graph must be closed before moving on!!!")
+    print('\n')
+    value = input("Please give me a starting year: ")
+    count = int(value)
+    year, date = [], []
+    while count < 2001:
+      test = ufo[ufo.Time.str.contains(value)]
+      date.append(value)
+      number = test.City.count()
+      year.append(int(number))
+      newValue = int(value)
+      newValue += 1
+      value = str(newValue)
+      count += 1
+    plt.plot(date, year, linewidth=2)
+    plt.title("UFO Sightings By Year", fontsize=24)
+    plt.xlabel("Year", fontsize=14)
+    plt.ylabel("Count", fontsize=12)
+    plt.show()
+  print("Where do you want to do to now: ")
+  print("1. Main Menu")
+  print("2. Quit")
+  choice = int(input("Please enter a number: "))
+  if choice == 1:
+    start(ufo)
+  elif choice == 2:
+    print("Thank you for using the program!")
+    print("Remember the TRUTH is out THERE!")
 
 
 def start(ufo):

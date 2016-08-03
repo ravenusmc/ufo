@@ -91,8 +91,23 @@ def other(ufo):
     start(ufo)
 
 def yearGraph(ufo):
+  print("\033c")
   print("Here you will have two options.")
   print("1. UFO count in a specific year.")
+  print("2. Enter in a year and see count, graphed, until 2001.")
+  option = int(input("What would you like to choose? "))
+  while not validyearGraph(option):
+    option = int(input("What would you like to choose? "))
+  if option == 1:
+    value = input("please give me a year to look at data: ")
+    test = ufo[ufo.Time.str.contains(value)]
+    count = test.City.count()
+    year = [] 
+    year.append(int(count))
+    print("The number of UFO's in " + value + " was: " + str(year))
+  elif option == 2:
+    
+
 
 def start(ufo):
   print("\033c")
@@ -100,7 +115,7 @@ def start(ufo):
   print("2. State")
   print("3. Shape")
   print("4. UFO's by Year")
-  print("4. Other")
+  print("5. Other")
   choice = int(input("Please enter the number of what you want to look at: "))
   while not validStart(choice):
     choice = int(input("Please enter the number of what you want to look at: "))

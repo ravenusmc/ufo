@@ -90,19 +90,29 @@ def other(ufo):
   elif option == 'back':
     start(ufo)
 
+def yearGraph(ufo):
+  print("Here you will have two options.")
+  print("1. UFO count in a specific year.")
+
 def start(ufo):
   print("\033c")
-  print("Here there will be where you select what you want to look at")
-  choice = input("Do you want to look at UFO's by 'city', 'state', 'shape' or 'other': ")
+  print("1. City")
+  print("2. State")
+  print("3. Shape")
+  print("4. UFO's by Year")
+  print("4. Other")
+  choice = int(input("Please enter the number of what you want to look at: "))
   while not validStart(choice):
-    choice = input("Do you want to look at UFO's by 'city', 'state', 'shape' or 'other': ")
-  if choice == 'city':
+    choice = int(input("Please enter the number of what you want to look at: "))
+  if choice == 1:
     city(ufo)
-  elif choice == "state":
+  elif choice == 2:
     state(ufo)
-  elif choice == 'shape':
+  elif choice == 3:
     shape(ufo)
-  elif choice == "other":
+  elif choice == 4:
+    yearGraph(ufo)
+  elif choice == 5:
     other(ufo)
 
 #This function is where all of the data will be pulled in from.

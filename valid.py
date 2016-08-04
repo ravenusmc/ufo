@@ -6,7 +6,7 @@ def valid(choice):
     return False
 
 def validMain(choice):
-  if choice == 'help' or choice == 'next':
+  if choice == 1 or choice == 2 or choice == 3:
     return True
   else: 
     return False

@@ -30,7 +30,7 @@ def help(ufo):
   while not valid(choice):
     choice = input("Do you still want to use the program?(y/n) ")
   if choice == 'y':
-    start();
+    mainMenu();
   elif choice == 'n':
     print("Thank you for using it!")
     print("Remember, the truth is out there!!")
@@ -42,7 +42,7 @@ def city(ufo):
   print(ufo[ufo.City == city.title()])
   option = input("Do you want to look at more data?(y/n) ")
   if option == 'y':
-    start(ufo)
+    mainMenu(ufo)
   elif option == 'n':
     print("Thank you for using the program!")
     print("Remember the truth is out there!")
@@ -54,7 +54,7 @@ def state(ufo):
   print(ufo[ufo.State == state.upper()])
   option = input("Do you want to look at more data?(y/n) ")
   if option == 'y':
-    start(ufo)
+    mainMenu(ufo)
   elif option == 'n':
     print("Thank you for using the program!")
     print("Remember the truth is out there!")
@@ -71,7 +71,7 @@ def shape(ufo):
     ufo.Shape.value_counts().plot(kind="bar")
     plt.show()
   else:
-    start(ufo)
+    mainMenu(ufo)
 
 def other(ufo):
   print("\033c")
@@ -84,7 +84,7 @@ def other(ufo):
   elif option == "shape":
     print(ufo.groupby('Shape').Shape.count())
   elif option == 'back':
-    start(ufo)
+    mainMenu(ufo)
 
 def yearGraph(ufo):
   print("\033c")
@@ -127,17 +127,17 @@ def yearGraph(ufo):
   print("2. Quit")
   choice = int(input("Please enter a number: "))
   if choice == 1:
-    start(ufo)
+    mainMenu(ufo)
   elif choice == 2:
     print("Thank you for using the program!")
     print("Remember the TRUTH is out THERE!")
 
 
-def start(ufo):
+def mainMenu(ufo):
   print("\033c")
-  print("1. City")
-  print("2. State")
-  print("3. Shape")
+  print("1. UFO's by City")
+  print("2. UFO's by State")
+  print("3. UFO by Shape")
   print("4. UFO's by Year")
   print("5. Other")
   choice = int(input("Please enter the number of what you want to look at: "))
@@ -159,14 +159,21 @@ def main():
   print("\033c")
   cols = ['City', 'Color', 'Shape', 'State', 'Time']
   ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
-  print("Thank you for using the program!")
-  choice = input("If you need to see directions on how to use this type 'help' or 'next' to move on. " )
+  print("Here are your options:")
+  print("1. Main Menu")
+  print("2. Help")
+  print("3. Quit")
+  choice = int(input("What do you choose? " ))
   while not validMain(choice):
     choice = input("If you need to see directions on how to use this type 'help' or 'next' to move on. " )
-  if choice == 'help':
-    help(ufo)
-  elif choice == 'next':
-    start(ufo)
+  if choice == 1:
+    mainMenu(ufo)
+  elif choice == 2:
+    help(ufo) 
+  elif choice == 3:
+    print("Thank you for using the program!")
+    print("The Truth is out there!")
+    
 
 #This is the main function that introduces the user to the program. 
 def intro():

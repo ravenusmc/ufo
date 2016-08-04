@@ -8,6 +8,23 @@ from datetime import datetime
 cols = ['City', 'Color', 'Shape', 'State', 'Time']
 ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
 
+##### Working on pulling the number of sightings for city
+
+
+city = str(input("Please enter a city to look at: "))
+df = ufo[ufo.City == city.title()]
+# print(df.City.value_counts())
+# print(df.City.count())
+count = df.City.count()
+print("The city of " + city + " has " + str(count) + " ufos")
+
+# print(movies.duration.value_counts())
+# print(test)
+# number = test.City.count()
+# print(number)
+
+#######
+
 #print(ufo.dtypes)
 
 
@@ -59,46 +76,33 @@ ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
 
 
 #######UFO count from specific year to year in which data ends. 
-value = input("Please give me a starting year: ")
-count = int(value)
-year, date = [], []
-while count < 2001:
-  test = ufo[ufo.Time.str.contains(value)]
-  date.append(value)
-  number = test.City.count()
-  year.append(int(number))
-  newValue = int(value)
-  newValue += 1
-  value = str(newValue)
-  count += 1
+# value = input("Please give me a starting year: ")
+# count = int(value)
+# year, date = [], []
+# while count < 2001:
+#   test = ufo[ufo.Time.str.contains(value)]
+#   date.append(value)
+#   number = test.City.count()
+#   year.append(int(number))
+#   newValue = int(value)
+#   newValue += 1
+#   value = str(newValue)
+#   count += 1
 
 # print(date)
 # print(year)
-plt.plot(date, year, linewidth=2)
+# plt.plot(date, year, linewidth=2)
 
-plt.title("UFO Sightings By Year", fontsize=24)
-plt.xlabel("Year", fontsize=14)
-plt.ylabel("Count", fontsize=12)
+# plt.title("UFO Sightings By Year", fontsize=24)
+# plt.xlabel("Year", fontsize=14)
+# plt.ylabel("Count", fontsize=12)
 
 
-plt.show()
-
-#plt.plot(year, linewidth=5)
-# plot.show()
-
-# squares = [1,2,4,9,16,25]
-# plt.plot(squares)
 # plt.show()
 
 
 
-# x = 0
-# nums = []
-# while x < 4:
-#   nums.append(x)
-#   x += 1
 
-# print(nums)
 
 
 

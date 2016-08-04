@@ -3,13 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 from valid import *
-# print(ufo[(ufo.State == "GA") & (ufo.City == "Atlanta")])
-
-  # option = input("Do you want to save this data stream to refine it more?(y/n) ")
-  # if option == 'y':
-  #   citySave = ufo[ufo.City == city]
-  # else: 
-  #   print("Data not saved moving on!")
 
 #### Main Program Functions #######
 
@@ -35,11 +28,17 @@ def help(ufo):
     print("Thank you for using it!")
     print("Remember, the truth is out there!!")
 
+# df = ufo[ufo.City == city.title()]
+# print(df.City.value_counts())
+
 def city(ufo):
   print("\033c")
   city = str(input("Please enter a city to look at: "))
   print("Here is the data on " + city.title())
   print(ufo[ufo.City == city.title()])
+  df = ufo[ufo.City == city.title()]
+  count = df.City.count()
+  print("The city of " + city + " has " + str(count) + " ufos")
   option = input("Do you want to look at more data?(y/n) ")
   if option == 'y':
     mainMenu(ufo)
@@ -52,6 +51,9 @@ def state(ufo):
   state = str(input("Please enter the state abbreviation: "))
   print("Here is the data on " + state.upper())
   print(ufo[ufo.State == state.upper()])
+  df = ufo[ufo.State == state.upper()]
+  count = df.State.count()
+  print("This state has " + str(count) + " ufos")
   option = input("Do you want to look at more data?(y/n) ")
   if option == 'y':
     mainMenu(ufo)
@@ -62,11 +64,16 @@ def state(ufo):
 def shape(ufo):
   print("\033c")
   print("Here are common shapes to examine: ")
-  print("disk, cigar, sphere, light, other, circle")
+  print("Disk")
+  print("Cigar")
+  print("Sphere")
+  print("Light")
+  print("Circle")
+  print("Other")
   shape = str(input("Please enter the shape you want to examine: "))
   print("Here is the data on ufo's shaped as a: " + shape.upper())
   print(ufo[ufo.Shape == shape.upper()])
-  graph = input("Would you like to see a bar graph of this data? ")
+  graph = input("Would you like to see a bar graph of this data?(y/n) ")
   if graph == "y":
     ufo.Shape.value_counts().plot(kind="bar")
     plt.show()

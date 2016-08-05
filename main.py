@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 
 from valid import *
 
+###### TO DO:
+### 1. ADD LINE GRAPH OF ALL THE UFO SHAPES OVER THE YEARS
+### 2. ADD CONCLUSION SECTION. 
+
 #### Main Program Functions #######
 
 #This function will explain to the user how to use UFO. 
@@ -27,9 +31,6 @@ def help(ufo):
   elif choice == 'n':
     print("Thank you for using it!")
     print("Remember, the truth is out there!!")
-
-# df = ufo[ufo.City == city.title()]
-# print(df.City.value_counts())
 
 def city(ufo):
   print("\033c")
@@ -111,6 +112,7 @@ def yearGraph(ufo):
   elif option == 2:
     print('\n')
     print("Please be aware that the graph must be closed before moving on!!!")
+    print("The years go from 1930 to 2001")
     print('\n')
     value = input("Please give me a starting year: ")
     count = int(value)

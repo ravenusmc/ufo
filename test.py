@@ -3,25 +3,64 @@
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
-from datetime import datetime
+
 
 cols = ['City', 'Color', 'Shape', 'State', 'Time']
 ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
 
+######## Attempting to sort out most common shape by year ######
+
+# shape = input("Please enter in a shape: ")
+# print(ufo[ufo.Shape == shape.upper()])
+# print(ufo[(ufo.Shape == shape.upper()) & (ufo.Time == '3/15/1946 15:30')])
+
+### Specific Year version:
+# count = []
+# year = input("please enter in a year: ")
+# shape = input("Please enter in a shape: ")
+# df = ufo[ufo.Time.str.contains(year)]
+# specificShape = df[df.Shape == shape.upper()]
+# number = specificShape.Shape.count()
+# count.append(int(number))
+# print(count)
+
+######### I HAVE TO BUILD A LINE GRAPH THAT SHOWS ALL OF THE UFO TYPES COMPARED TO EACH OTHER!
+
+### Loop Version
+count = []
+year = int(input("please enter in a year: "))
+shape = input("Please enter in a shape: ")
+while year < 2001:
+  yearString = str(year)
+  df = ufo[ufo.Time.str.contains(yearString)]
+  specificShape = df[df.Shape == shape.upper()]
+  number = specificShape.Shape.count()
+  count.append(int(number))
+  year += 1
+
+print(count)
+
+# df.Shape.value_counts().plot(kind="bar")
+# plt.show()
+
+# count = test.City.count()
+# year = [] 
+# year.append(int(count))
+# print(year)
+
+###
+
+
+
+
 ##### Working on pulling the number of sightings for city
 
+## This works!!!
+# city = str(input("Please enter a city to look at: "))
+# df = ufo[ufo.City == city.title()]
+# count = df.City.count()
+# print("The city of " + city + " has " + str(count) + " ufos")
 
-city = str(input("Please enter a city to look at: "))
-df = ufo[ufo.City == city.title()]
-# print(df.City.value_counts())
-# print(df.City.count())
-count = df.City.count()
-print("The city of " + city + " has " + str(count) + " ufos")
-
-# print(movies.duration.value_counts())
-# print(test)
-# number = test.City.count()
-# print(number)
 
 #######
 
@@ -81,6 +120,31 @@ print("The city of " + city + " has " + str(count) + " ufos")
 # year, date = [], []
 # while count < 2001:
 #   test = ufo[ufo.Time.str.contains(value)]
+#   date.append(value)
+#   number = test.City.count()
+#   year.append(int(number))
+#   newValue = int(value)
+#   newValue += 1
+#   value = str(newValue)
+#   count += 1
+
+# print(date)
+# print(year)
+# plt.plot(date, year, linewidth=2)
+
+# plt.title("UFO Sightings By Year", fontsize=24)
+# plt.xlabel("Year", fontsize=14)
+# plt.ylabel("Count", fontsize=12)
+
+
+# plt.show()
+
+
+# value = input("Please give me a starting year: ")
+# count = int(value)
+# year, date = [], []
+# while count < 2001:
+#   test = ufo[ufo.Shape.str.contains(value)]
 #   date.append(value)
 #   number = test.City.count()
 #   year.append(int(number))

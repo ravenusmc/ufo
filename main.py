@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from valid import *
 
 ###### TO DO:
-### 1. ADD LINE GRAPH OF ALL THE UFO SHAPES OVER THE YEARS
+### 1. ADD A PROPER EXIT TO SHAPE FUNCTION 
 ### 2. ADD CONCLUSION SECTION. 
 
 #### Main Program Functions #######
@@ -64,22 +64,94 @@ def state(ufo):
 
 def shape(ufo):
   print("\033c")
-  print("Here are common shapes to examine: ")
+  print("Here are the shapes to examine: ")
   print("Disk")
   print("Cigar")
-  print("Sphere")
+  print("Triangle")
   print("Light")
-  print("Circle")
+  print("Sphere")
   print("Other")
-  shape = str(input("Please enter the shape you want to examine: "))
-  print("Here is the data on ufo's shaped as a: " + shape.upper())
-  print(ufo[ufo.Shape == shape.upper()])
-  graph = input("Would you like to see a bar graph of this data?(y/n) ")
-  if graph == "y":
-    ufo.Shape.value_counts().plot(kind="bar")
+  print('\n')
+  print("1. See a chart of the shape you select with other data.")
+  print("2. A graph where you select what shapes you want and their count since 1930.")
+  print('\n')
+  option = int(input("How do you want to look at the information: "))
+  if option == 1:
+    shape = str(input("Please enter the shape you want to examine: "))
+    print("Here is the data on ufo's shaped as a: " + shape.upper())
+    print(ufo[ufo.Shape == shape.upper()])
+  elif option == 2:
+    print("\033c")
+    print("Here are the shapes to examine: ")
+    print("Disk")
+    print("Cigar")
+    print("Light")
+    print("Triangle")
+    print("Sphere")
+    print("Other")
+    print('\n')
+    shapes = []
+    print("You choose to look at the graph.")
+    print("Enter the shapes you want included. Type 'quit' to exit.")
+    while True:
+      view = input("Please enter the shape you want included on the graph: ")
+      if view == "quit":
+        break
+      else: 
+        shapes.append(view)
+    diskCount, lightCount, triangleCount, cigarCount, sphereCount, otherCount = [], [], [], [], [], []
+    yearDisk, yearLight, yearTriangle, yearCigar, yearSphere, yearOther = [], [], [], [], [], []
+    for shape in shapes:
+      startYear, diskYear, lightYear, triangleYear, cigarYear, sphereYear, otherYear = 1930, 1930, 1930, 1930, 1930, 1930, 1930
+      while startYear < 2001:
+        yearString = str(startYear)
+        df = ufo[ufo.Time.str.contains(yearString)]
+        if shape == "disk":
+          specificShape = df[df.Shape == shape.upper()]
+          number = specificShape.Shape.count()
+          diskCount.append(int(number))
+          yearDisk.append(diskYear)
+          diskYear += 1
+        elif shape == "light":
+          specificShape = df[df.Shape == shape.upper()]
+          number = specificShape.Shape.count()
+          lightCount.append(int(number))
+          yearLight.append(lightYear)
+          lightYear += 1
+        elif shape == "triangle":
+          specificShape = df[df.Shape == shape.upper()]
+          number = specificShape.Shape.count()
+          triangleCount.append(int(number))
+          yearTriangle.append(triangleYear)
+          triangleYear += 1
+        elif shape == "cigar":
+          specificShape = df[df.Shape == shape.upper()]
+          number = specificShape.Shape.count()
+          cigarCount.append(int(number))
+          yearCigar.append(cigarYear)
+          cigarYear += 1
+        elif shape == "sphere":
+          specificShape = df[df.Shape == shape.upper()]
+          number = specificShape.Shape.count()
+          sphereCount.append(int(number))
+          yearSphere.append(sphereYear)
+          sphereYear += 1
+        elif shape == "other":
+          specificShape = df[df.Shape == shape.upper()]
+          number = specificShape.Shape.count()
+          otherCount.append(int(number))
+          yearOther.append(otherYear)
+          otherYear += 1
+        startYear += 1
+    plt.plot(yearDisk, diskCount, linewidth=2, c="red")
+    plt.plot(yearLight, lightCount, linewidth=2, c="blue")
+    plt.plot(yearTriangle, triangleCount, linewidth=2, c="black")
+    plt.plot(yearCigar, cigarCount, linewidth=2, c="green")
+    plt.plot(yearSphere, sphereCount, linewidth=2, c="orange")
+    plt.plot(yearOther, otherCount, linewidth=2, c="purple")
+    plt.xlabel("Year", fontsize=14)
+    plt.ylabel("Count of UFO Shape", fontsize=12)
     plt.show()
-  else:
-    mainMenu(ufo)
 
 def other(ufo):
   print("\033c")
@@ -141,6 +213,10 @@ def yearGraph(ufo):
     print("Thank you for using the program!")
     print("Remember the TRUTH is out THERE!")
 
+def conclusion():
+  print("\033c")
+  print("Since I was a small child I have been interested in UFO's")
+
 
 def mainMenu(ufo):
   print("\033c")
@@ -149,6 +225,7 @@ def mainMenu(ufo):
   print("3. UFO by Shape")
   print("4. UFO's by Year")
   print("5. Other")
+  print("6. Conclusion of Results")
   choice = int(input("Please enter the number of what you want to look at: "))
   while not validStart(choice):
     choice = int(input("Please enter the number of what you want to look at: "))
@@ -162,6 +239,8 @@ def mainMenu(ufo):
     yearGraph(ufo)
   elif choice == 5:
     other(ufo)
+  elif choice == 6:
+    conclusion()
 
 #This function is where all of the data will be pulled in from.
 def main():

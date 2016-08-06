@@ -27,26 +27,86 @@ ufo = pd.read_csv('http://bit.ly/uforeports', names=cols)
 ######### I HAVE TO BUILD A LINE GRAPH THAT SHOWS ALL OF THE UFO TYPES COMPARED TO EACH OTHER!
 
 ### Loop Version
-count = []
-year = int(input("please enter in a year: "))
-shape = input("Please enter in a shape: ")
-while year < 2001:
-  yearString = str(year)
+# count = []
+# year = int(input("please enter in a year: "))
+# shape = input("Please enter in a shape: ")
+# while year < 2001:
+#   yearString = str(year)
+#   df = ufo[ufo.Time.str.contains(yearString)]
+#   specificShape = df[df.Shape == shape.upper()]
+#   number = specificShape.Shape.count()
+#   count.append(int(number))
+#   year += 1
+
+# print(count)
+
+
+diskCount = []
+years = []
+startYear = 1930
+shape = "disk"
+while startYear < 2001:
+  yearString = str(startYear)
   df = ufo[ufo.Time.str.contains(yearString)]
   specificShape = df[df.Shape == shape.upper()]
   number = specificShape.Shape.count()
-  count.append(int(number))
-  year += 1
+  diskCount.append(int(number))
+  years.append(startYear)
+  startYear += 1
 
-print(count)
+lightCount = []
+years = []
+startYear = 1930
+shape = "light"
+while startYear < 2001:
+  yearString = str(startYear)
+  df = ufo[ufo.Time.str.contains(yearString)]
+  specificShape = df[df.Shape == shape.upper()]
+  number = specificShape.Shape.count()
+  lightCount.append(int(number))
+  years.append(startYear)
+  startYear += 1
+
+triangleCount = []
+years = []
+startYear = 1930
+shape = "triangle"
+while startYear < 2001:
+  yearString = str(startYear)
+  df = ufo[ufo.Time.str.contains(yearString)]
+  specificShape = df[df.Shape == shape.upper()]
+  number = specificShape.Shape.count()
+  triangleCount.append(int(number))
+  years.append(startYear)
+  startYear += 1
+
+cigarCount = []
+years = []
+startYear = 1930
+shape = "triangle"
+while startYear < 2001:
+  yearString = str(startYear)
+  df = ufo[ufo.Time.str.contains(yearString)]
+  specificShape = df[df.Shape == shape.upper()]
+  number = specificShape.Shape.count()
+  cigarCount.append(int(number))
+  years.append(startYear)
+  startYear += 1
+
+plt.plot(years, diskCount, linewidth=2, c="red")
+plt.plot(years, lightCount, linewidth=2, c="blue")
+plt.plot(years, triangleCount, linewidth=2, c="black")
+plt.plot(years, cigarCount, linewidth=2, c="green")
+plt.xlabel("Year", fontsize=14)
+plt.ylabel("Count of UFO Shape", fontsize=12)
+plt.show()
+
+# plt.title("UFO Sightings By Year", fontsize=24)
+
 
 # df.Shape.value_counts().plot(kind="bar")
 # plt.show()
 
-# count = test.City.count()
-# year = [] 
-# year.append(int(count))
-# print(year)
 
 ###
 

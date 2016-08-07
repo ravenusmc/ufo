@@ -7,7 +7,6 @@ from valid import *
 
 ###### TO DO:
 ### 1. ADD A PROPER EXIT TO SHAPE FUNCTION 
-### 2. ADD CONCLUSION SECTION. 
 
 #### Main Program Functions #######
 

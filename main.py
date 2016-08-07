@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+from prettytable import PrettyTable 
 
 from valid import *
 
@@ -215,12 +216,34 @@ def yearGraph(ufo):
 
 def conclusion():
   print("\033c")
-  print("Since I was a small child I have been interested in UFO's")
+  print("Since I was a small child, I have been interested in UFO's")
   print("However, as entered college I started to lose interest in them.")
   print("I felt that they simply were not real.")
   print("It was actually a comment, from steven spielberg that started to kill my belief.")
   print("As far as I know, he stated something along the lines of: ")
-  print("")
+  print("'With everyone having a camera on thier phone why are we not seeing more")
+  print("'high quality images of UFO's.' ")
+  print('\n')
+  print("The data in this program shows that the number of UFO sighting is going up.")
+  print("However, the number of sighting also shot way up in the early to mid 90's.")
+  print("This was when I was growing up and UFO's were all the rage with shows like the")
+  print("X-Files, Sightings, Unsolved Mysteries. UFOs became a culture aspect.")
+  print("Looking at the shape data, the types of shapes also increased dramatically in the same time period")
+  print("The only shape that was common to see in the 1960's and 70's was the 'disk' shape.")
+  print("Again, I believe that cultural aspects like the Twilight Zone, the Outer Limits and other  ")
+  print("sci-fi shows from this time period led to UFO's becoming popular, briefly. ")
+  print("Thus, we are not being invaded but instead UFOs are invading pop culture.")
+  print("As Dana Scully use to say on the X-Files: 'I want to Believe'. Yet, the data does not support it.")
+  print("1. Main Menu")
+  print("2. Quit")
+  choice = int(input("What is your choice: "))
+  while not validConclu(choice):
+    choice = int(input("What is your choice: "))
+  if choice == 1:
+    mainMenu(ufo)
+  elif choice == 2:
+    print("Thank you for using the program")
+    print("Remember, The Truth is Out There")
 
 
 def mainMenu(ufo):

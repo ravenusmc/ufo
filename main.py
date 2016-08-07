@@ -216,6 +216,11 @@ def yearGraph(ufo):
 def conclusion():
   print("\033c")
   print("Since I was a small child I have been interested in UFO's")
+  print("However, as entered college I started to lose interest in them.")
+  print("I felt that they simply were not real.")
+  print("It was actually a comment, from steven spielberg that started to kill my belief.")
+  print("As far as I know, he stated something along the lines of: ")
+  print("")
 
 
 def mainMenu(ufo):

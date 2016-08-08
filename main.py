@@ -3,11 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from prettytable import PrettyTable 
 
+#All of the functions to ensure that valid information is entered by the user are kept in a 
+#separate file. 
 from valid import *
 
 ###### TO DO:
 ### 1. ADD Key to shape's graph
-### 2. ADD MORE COMMENTS TO EACH FUNCTION ABOUT ITS PURPOSE
 
 #### Main Program Functions #######
 
@@ -25,7 +26,7 @@ def intro():
     print('Thank you for using the program! Hope you come again!')
     print('Remember that the truth is out there!')
 
-#This function is where all of the data will be pulled in from.
+#This function pulls all of the data from the web. It will then pass it from function to function.
 def main():
   print("\033c")
   cols = ['City', 'Color', 'Shape', 'State', 'Time']
@@ -45,6 +46,7 @@ def main():
     print("Thank you for using the program!")
     print("The Truth is out there!")
 
+#This is the main menu of the program. The user will be taken back here if they so desire. 
 def mainMenu(ufo):
   print("\033c")
   print("1. UFO's by City")
@@ -91,6 +93,7 @@ def help(ufo):
     print("Thank you for using it!")
     print("Remember, the truth is out there!!")
 
+#This function shows the UFO sightings, over the years, by city.
 def city(ufo):
   print("\033c")
   city = str(input("Please enter a city to look at: "))
@@ -106,6 +109,7 @@ def city(ufo):
     print("Thank you for using the program!")
     print("Remember the truth is out there!")
 
+#This function shows the UFO sightings, over the years, by state.
 def state(ufo):
   print("\033c")
   state = str(input("Please enter the state abbreviation: "))
@@ -121,6 +125,10 @@ def state(ufo):
     print("Thank you for using the program!")
     print("Remember the truth is out there!")
 
+#This is one of the longest functions in the program. I wrote this function over the course of about 
+#two days. It is where the user can see the UFOs by shape as well as by shape and their count over 
+#the years. I do repeat myself a few times in it but trust me, how I had it originally it was 
+#much much longer.
 def shape(ufo):
   print("\033c")
   print("Here are the shapes to examine: ")
@@ -149,27 +157,44 @@ def shape(ufo):
     print("Sphere")
     print("Other")
     print('\n')
+    #A shapes list is initialized. This is what will hold the shapes that the user wants to look at.
     shapes = []
     print("You choose to look at the graph.")
     print("Remember, after your done with examining the graph it must be closed before moving on.")
     print("Enter the shapes you want included. Type 'done' when finished entering what you want to look at.")
     while True:
+      #Here the user enters the shapes that the user wants included on the graph. 
       view = input("Please enter the shape you want included on the graph: ")
       if view == "done":
         break
       else: 
+        #The shapes will then be placed into the shapes list.
         shapes.append(view)
+    #These lists will hold the count, each year, for each spcific shape that the user wants to look at.
     diskCount, lightCount, triangleCount, cigarCount, sphereCount, otherCount = [], [], [], [], [], []
+    #These lists will hold the year for each shape. I could not get the graph in matplotlib to work without
+    #doing this.
     yearDisk, yearLight, yearTriangle, yearCigar, yearSphere, yearOther = [], [], [], [], [], []
+    #I then have a for loop that will loop through the shapes list. 
     for shape in shapes:
+      #The start year, for each shape is set as the same year-1930
       startYear, diskYear, lightYear, triangleYear, cigarYear, sphereYear, otherYear = 1930, 1930, 1930, 1930, 1930, 1930, 1930
+      #This while loop will go through each year, for each shape getting the count of that shape for that
+      #year. 
       while startYear < 2001:
+        #I have to convert the start year to a string to use it in the next line.
         yearString = str(startYear)
+        #I am setting up a dataframe that will hold all the information for a specific year. 
         df = ufo[ufo.Time.str.contains(yearString)]
         if shape == "disk":
+          #This line uses the df created above and search's for every entry that has the spcific shape 
+          #that the user wanted. 
           specificShape = df[df.Shape == shape.upper()]
+          #The specific shape variable is then taken and a count is done on the Shape column.
           number = specificShape.Shape.count()
+          #That count is then pushed into the diskcount List.
           diskCount.append(int(number))
+          #The specific year that is currently being cycled through is appended to the year List.
           yearDisk.append(diskYear)
           diskYear += 1
         elif shape == "light":
@@ -203,6 +228,7 @@ def shape(ufo):
           yearOther.append(otherYear)
           otherYear += 1
         startYear += 1
+    #All of these below lines are for matplotlib to actually graph the data. 
     plt.plot(yearDisk, diskCount, linewidth=2, c="red")
     plt.plot(yearLight, lightCount, linewidth=2, c="blue")
     plt.plot(yearTriangle, triangleCount, linewidth=2, c="black")
@@ -222,6 +248,7 @@ def shape(ufo):
       print("Thank you for using the program!")
       print("Remember the TRUTH is out THERE!")
 
+#This function basically tells the user the basic count of how many ufo's are in a city or the shape. 
 def other(ufo):
   print("\033c")
   print("Do you want to look at UFO count by city? ")
@@ -235,6 +262,7 @@ def other(ufo):
   elif option == 'back':
     mainMenu(ufo)
 
+#This function will plot the ufo count from the year the user enters to 2001. 
 def yearGraph(ufo):
   print("\033c")
   print("Here you will have two options.")
@@ -282,6 +310,8 @@ def yearGraph(ufo):
     print("Thank you for using the program!")
     print("Remember the TRUTH is out THERE!")
 
+#I decided to add this function so that the user can see the conclusions that I pulled from working 
+#on this program. 
 def conclusion():
   print("\033c")
   print("Since I was a small child, I have been interested in UFO's")

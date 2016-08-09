@@ -134,8 +134,8 @@ def shape(ufo):
   print("Here are the shapes to examine: ")
   print("Disk")
   print("Cigar")
-  print("Triangle")
   print("Light")
+  print("Triangle")
   print("Sphere")
   print("Other")
   print('\n')
@@ -235,6 +235,7 @@ def shape(ufo):
     plt.plot(yearCigar, cigarCount, linewidth=2, c="green")
     plt.plot(yearSphere, sphereCount, linewidth=2, c="orange")
     plt.plot(yearOther, otherCount, linewidth=2, c="purple")
+    plt.title("UFO SHAPES BY YEAR", fontsize=16)
     plt.xlabel("Year", fontsize=14)
     plt.ylabel("Count of UFO Shape", fontsize=12)
     plt.show()
@@ -261,6 +262,15 @@ def other(ufo):
     print(ufo.groupby('Shape').Shape.count())
   elif option == 'back':
     mainMenu(ufo)
+  print("Where do you want to do to now: ")
+  print("1. Main Menu")
+  print("2. Quit")
+  choice = int(input("Please enter a number: "))
+  if choice == 1:
+    mainMenu(ufo)
+  elif choice == 2:
+    print("Thank you for using the program!")
+    print("Remember the TRUTH is out THERE!")
 
 #This function will plot the ufo count from the year the user enters to 2001. 
 def yearGraph(ufo):

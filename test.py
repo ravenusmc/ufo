@@ -227,7 +227,17 @@ plt.show()
 
 
 
-
+        
+    
+        
+        This was when I was growing up and UFO's were all the rage with shows like the
+        X-Files, Sightings, Unsolved Mysteries. UFOs became a culture aspect.
+        Looking at the shape data, the types of shapes also increased dramatically in the same time period
+        The only shape that was common to see in the 1960's and 70's was the 'disk' shape.
+        Again, I believe that cultural aspects like the Twilight Zone, the Outer Limits and other  
+        sci-fi shows from this time period led to UFO's becoming popular, briefly. 
+        Thus, we are not being invaded but instead UFOs are invading pop culture.
+        As Dana Scully use to say on the X-Files: 'I want to Believe'. Yet, the data does not support it.
 
 
 

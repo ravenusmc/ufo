@@ -325,25 +325,23 @@ def yearGraph(ufo):
 #on this program. Yes, I have to fix the formatting issues here.
 def conclusion():
   print("\033c")
-  print("""Since I was a small child, I have been interested in UFO's.
-        However, as entered college I started to lose interest in them.
-        I felt that they simply were not real.
-        It was actually a comment, from steven spielberg that started to kill my belief.
-        As far as I know, he stated something along the lines of:
-        'With everyone having a camera on thier phone why are we not seeing more high quality images 
-        of UFO's.'
-        
-        The data in this program shows that the number of UFO sighting is going up.
-        However, the number of sighting also shot way up in the early to mid 90's.
-        This was when I was growing up and UFO's were all the rage with shows like the
-        X-Files, Sightings, Unsolved Mysteries. UFOs became a culture aspect.
-        Looking at the shape data, the types of shapes also increased dramatically in the same time period
-        The only shape that was common to see in the 1960's and 70's was the 'disk' shape.
-        Again, I believe that cultural aspects like the Twilight Zone, the Outer Limits and other  
-        sci-fi shows from this time period led to UFO's becoming popular, briefly. 
-        Thus, we are not being invaded but instead UFOs are invading pop culture.
-        As Dana Scully use to say on the X-Files: 'I want to Believe'. Yet, the data does not support it.
-   """)
+  print("Since I was a small child, I have been interested in UFO's.")
+  print("However, as I entered college I started to lose interest in them.")
+  print("I felt that they simply were not real.")
+  print("It was actually a comment, from steven spielberg that started to kill my belief.")
+  print("He stated something along the lines of:")
+  print("With everyone having a camera on thier phones why are")
+  print("we not seeing more high quality images of UFO's.")
+  print("The data in this program shows that the number of UFO sighting is going up.")
+  print("However, the number of sightings also shot way up in the early to mid 90's.")
+  print("This was when I was growing up and UFO's were all the rage with shows like the")
+  print("X-Files, Sightings, Unsolved Mysteries. UFOs became a cultural phenomenon.")
+  print("Looking at the shape data, the types of shapes also increased dramatically in the same time period")
+  print("The only shape that was common to see in the 1960's and 70's was the 'disk' shape.")
+  print("Again, I believe that cultural aspects like the Twilight Zone, the Outer Limits and other ")
+  print("sci-fi shows from this time period led to UFO's becoming popular, briefly. ")
+  print("Thus, we are not being invaded but instead UFOs are invading pop culture.")
+  print("As Dana Scully use to say on the X-Files: 'I want to Believe'. Yet, the data does not support it.")        
   print("1. Main Menu")
   print("2. Quit")
   choice = int(input("What is your choice: "))
